@@ -1,6 +1,4 @@
 const PROFILE = {
-  name: "M.Hilman Alfiqri",
-  role: "Web Application Developer & Digital Solution Builder",
   whatsapp: "6287872412014",
   whatsappDisplay: "+62 878-7241-2014",
   email: "hilmanalfiqri01@gmail.com"
@@ -12,241 +10,273 @@ const WHATSAPP_MESSAGE =
 document.addEventListener("DOMContentLoaded", init);
 
 function init() {
-  injectHeroAccent();
+  bindContactLinks();
   initNavbar();
   initMobileMenu();
-  initScrollReveal();
-  initActiveNavigation();
-  initHeroAnimation();
-  initCursorGlow();
-  initCardSpotlights();
+  initHero();
+  initScrollProgress();
+  initMaskedHeadings();
+  initScrollReveals();
+  initStoryProgress();
   initTimeline();
-  initContactLinks();
+  initPointerSpotlights();
+  initDepthEffects();
+  initMagneticButtons();
+  initMicroTilt();
   initCurrentYear();
 }
 
-function injectHeroAccent() {
-  const title = document.querySelector(".hero-title");
-  if (!title) return;
-  const phrase = "Sistem Digital";
-  title.innerHTML = title.textContent.replace(
-    phrase,
-    `<span class="accent">${phrase}</span>`
-  );
+function bindContactLinks() {
+  const wa = `https://wa.me/${PROFILE.whatsapp}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  document.querySelectorAll(".js-whatsapp").forEach((link) => {
+    link.href = wa;
+  });
 }
 
 function initNavbar() {
   const header = document.getElementById("site-header");
-  if (!header) return;
+  const links = [...document.querySelectorAll(".nav-link")];
+  const sections = [...document.querySelectorAll("#home,#about,#expertise,#projects,#services,#process,#contact")];
 
-  const updateHeader = () => {
-    header.classList.toggle("scrolled", window.scrollY > 18);
+  const update = () => {
+    header.classList.toggle("scrolled", window.scrollY > 26);
   };
+  update();
+  window.addEventListener("scroll", update, { passive: true });
 
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  if (!("IntersectionObserver" in window)) return;
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    links.forEach((link) => {
+      link.classList.toggle("active", link.getAttribute("href") === `#${visible.target.id}`);
+    });
+  }, { threshold: [0.2,0.45,0.7], rootMargin: "-22% 0px -55% 0px" });
+
+  sections.forEach((section) => observer.observe(section));
 }
 
 function initMobileMenu() {
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.getElementById("mobile-menu");
-  if (!toggle || !menu) return;
+  const icon = toggle?.querySelector("img");
+  if (!toggle || !menu || !icon) return;
 
-  const closeMenu = () => {
-    toggle.classList.remove("active");
-    toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", "Buka menu");
+  const close = () => {
     menu.hidden = true;
     document.body.classList.remove("menu-open");
+    toggle.setAttribute("aria-expanded","false");
+    toggle.setAttribute("aria-label","Buka menu");
+    icon.src = "assets/icons/menu.svg";
   };
 
-  const openMenu = () => {
-    toggle.classList.add("active");
-    toggle.setAttribute("aria-expanded", "true");
-    toggle.setAttribute("aria-label", "Tutup menu");
+  const open = () => {
     menu.hidden = false;
     document.body.classList.add("menu-open");
+    toggle.setAttribute("aria-expanded","true");
+    toggle.setAttribute("aria-label","Tutup menu");
+    icon.src = "assets/icons/close.svg";
   };
 
   toggle.addEventListener("click", () => {
-    const isOpen = toggle.getAttribute("aria-expanded") === "true";
-    isOpen ? closeMenu() : openMenu();
+    toggle.getAttribute("aria-expanded") === "true" ? close() : open();
   });
-
-  menu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeMenu();
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 992) closeMenu();
-  });
+  menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape") close(); });
+  window.addEventListener("resize", () => { if (window.innerWidth > 992) close(); });
 }
 
-function initScrollReveal() {
-  const revealElements = document.querySelectorAll(
-    ".reveal, .reveal-left, .reveal-right, .reveal-scale"
-  );
+function initHero() {
+  requestAnimationFrame(() => document.body.classList.add("hero-ready"));
+}
 
+function initScrollProgress() {
+  const bar = document.getElementById("scroll-progress-bar");
+  let raf = null;
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = max > 0 ? window.scrollY / max : 0;
+    bar.style.width = `${Math.min(100, Math.max(0, ratio * 100))}%`;
+    document.body.classList.toggle("has-scrolled", window.scrollY > 8);
+    raf = null;
+  };
+  window.addEventListener("scroll", () => {
+    if (!raf) raf = requestAnimationFrame(update);
+  }, { passive: true });
+  update();
+}
+
+function initMaskedHeadings() {
+  const headings = document.querySelectorAll(".masked-heading");
   if (!("IntersectionObserver" in window)) {
-    revealElements.forEach((element) => element.classList.add("show"));
+    headings.forEach((h) => h.classList.add("is-visible"));
     return;
   }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: .32 });
+  headings.forEach((heading) => observer.observe(heading));
+}
 
+function initScrollReveals() {
+  const nodes = document.querySelectorAll(".reveal-standard,.reveal-card,.reveal-perspective,.image-mask-reveal");
   document.querySelectorAll(".stagger-group").forEach((group) => {
-    group.querySelectorAll(".reveal").forEach((card, index) => {
-      card.style.transitionDelay = `${Math.min(index * 80, 400)}ms`;
+    group.querySelectorAll(".reveal-card").forEach((card,index) => {
+      card.style.transitionDelay = `${Math.min(index * 75, 420)}ms`;
     });
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("show");
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -4% 0px" }
-  );
+  if (!("IntersectionObserver" in window)) {
+    nodes.forEach((node) => node.classList.add("is-visible"));
+    return;
+  }
 
-  revealElements.forEach((element) => observer.observe(element));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: .14, rootMargin: "0px 0px -5% 0px" });
+
+  nodes.forEach((node) => observer.observe(node));
 }
 
-function initActiveNavigation() {
-  const sections = document.querySelectorAll(
-    "#home, #about, #expertise, #projects, #services, #process, #contact"
-  );
-  const links = document.querySelectorAll(".nav-link");
+function initStoryProgress() {
+  const steps = [...document.querySelectorAll("[data-story-step]")];
+  if (!steps.length) return;
 
-  if (!("IntersectionObserver" in window)) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-      if (!visible) return;
-
-      links.forEach((link) => {
-        link.classList.toggle(
-          "active",
-          link.getAttribute("href") === `#${visible.target.id}`
-        );
-      });
-    },
-    { threshold: [0.25, 0.45, 0.65], rootMargin: "-18% 0px -52% 0px" }
-  );
-
-  sections.forEach((section) => observer.observe(section));
-}
-
-function initHeroAnimation() {
-  requestAnimationFrame(() => {
-    document.body.classList.add("hero-ready");
-  });
-}
-
-function initCursorGlow() {
-  if (!window.matchMedia("(pointer: fine)").matches) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  document.querySelectorAll(".section-glow").forEach((section) => {
-    const glow = section.querySelector(".cursor-glow");
-    if (!glow) return;
-
-    let rafId = null;
-    let latestEvent = null;
-
-    section.addEventListener("pointerenter", () => section.classList.add("glow-active"));
-    section.addEventListener("pointerleave", () => section.classList.remove("glow-active"));
-    section.addEventListener(
-      "pointermove",
-      (event) => {
-        latestEvent = event;
-        if (rafId) return;
-
-        rafId = requestAnimationFrame(() => {
-          const rect = section.getBoundingClientRect();
-          glow.style.left = `${latestEvent.clientX - rect.left}px`;
-          glow.style.top = `${latestEvent.clientY - rect.top}px`;
-          rafId = null;
-        });
-      },
-      { passive: true }
-    );
-  });
-}
-
-function initCardSpotlights() {
-  if (!window.matchMedia("(pointer: fine)").matches) return;
-
-  document.querySelectorAll(".spotlight-card").forEach((card) => {
-    card.addEventListener(
-      "pointermove",
-      (event) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--spot-x", `${event.clientX - rect.left}px`);
-        card.style.setProperty("--spot-y", `${event.clientY - rect.top}px`);
-      },
-      { passive: true }
-    );
-  });
+  const update = () => {
+    const point = window.innerHeight * .62;
+    steps.forEach((step) => {
+      step.classList.toggle("active", step.getBoundingClientRect().top < point);
+    });
+  };
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
 }
 
 function initTimeline() {
   const timeline = document.getElementById("process-timeline");
-  if (!timeline) return;
+  const progress = document.getElementById("timeline-progress");
+  const steps = [...document.querySelectorAll(".process-step")];
+  if (!timeline || !progress) return;
 
-  const steps = [...timeline.querySelectorAll(".process-step")];
-
-  const updateTimeline = () => {
+  let raf = null;
+  const update = () => {
     const rect = timeline.getBoundingClientRect();
-    const viewportPoint = window.innerHeight * 0.62;
-    const progress = Math.max(
-      0,
-      Math.min(1, (viewportPoint - rect.top) / Math.max(rect.height, 1))
-    );
-
-    timeline.style.setProperty("--timeline-progress", `${progress * 100}%`);
-
-    steps.forEach((step) => {
-      const stepRect = step.getBoundingClientRect();
-      step.classList.toggle("active", stepRect.top < viewportPoint);
-    });
+    const point = window.innerHeight * .62;
+    const ratio = Math.max(0, Math.min(1, (point - rect.top) / Math.max(rect.height,1)));
+    progress.style.height = `${ratio * 100}%`;
+    steps.forEach((step) => step.classList.toggle("active", step.getBoundingClientRect().top < point));
+    raf = null;
   };
-
-  updateTimeline();
-  window.addEventListener("scroll", updateTimeline, { passive: true });
-  window.addEventListener("resize", updateTimeline);
+  window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(update); }, { passive:true });
+  window.addEventListener("resize", update);
+  update();
 }
 
-function initContactLinks() {
-  const whatsappURL =
-    `https://wa.me/${PROFILE.whatsapp}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-  const emailURL = `mailto:${PROFILE.email}`;
-
-  document.querySelectorAll(".js-whatsapp").forEach((link) => {
-    link.setAttribute("href", whatsappURL);
+function initPointerSpotlights() {
+  if (!window.matchMedia("(pointer:fine)").matches) return;
+  document.querySelectorAll("[data-spotlight]").forEach((surface) => {
+    surface.addEventListener("pointermove", (event) => {
+      const rect = surface.getBoundingClientRect();
+      surface.style.setProperty("--mouse-x", `${event.clientX - rect.left}px`);
+      surface.style.setProperty("--mouse-y", `${event.clientY - rect.top}px`);
+    }, { passive:true });
   });
+}
 
-  document.querySelectorAll(".js-whatsapp-display").forEach((element) => {
-    element.textContent = PROFILE.whatsappDisplay;
+function initDepthEffects() {
+  if (!window.matchMedia("(pointer:fine)").matches || window.innerWidth < 992) return;
+  if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+
+  document.querySelectorAll("[data-depth-root]").forEach((root) => {
+    const layers = [...root.querySelectorAll("[data-depth]")];
+    let targetX = 0, targetY = 0, currentX = 0, currentY = 0, raf = null;
+
+    const render = () => {
+      currentX += (targetX - currentX) * .11;
+      currentY += (targetY - currentY) * .11;
+      layers.forEach((layer) => {
+        const amount = Number(layer.dataset.depth || .5);
+        layer.style.translate = `${currentX * amount}px ${currentY * amount}px`;
+      });
+      if (Math.abs(targetX-currentX) > .02 || Math.abs(targetY-currentY) > .02) {
+        raf = requestAnimationFrame(render);
+      } else {
+        raf = null;
+      }
+    };
+
+    root.addEventListener("pointermove", (event) => {
+      const rect = root.getBoundingClientRect();
+      const nx = (event.clientX - rect.left) / rect.width - .5;
+      const ny = (event.clientY - rect.top) / rect.height - .5;
+      targetX = nx * 7;
+      targetY = ny * 6;
+      if (!raf) raf = requestAnimationFrame(render);
+    }, { passive:true });
+
+    root.addEventListener("pointerleave", () => {
+      targetX = 0;
+      targetY = 0;
+      if (!raf) raf = requestAnimationFrame(render);
+    });
   });
+}
 
-  document.querySelectorAll(".js-email-link, .js-email-text").forEach((link) => {
-    link.setAttribute("href", emailURL);
-    if (link.classList.contains("js-email-text")) {
-      link.textContent = PROFILE.email;
-    }
+function initMagneticButtons() {
+  if (!window.matchMedia("(pointer:fine)").matches || window.innerWidth < 992) return;
+  if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+
+  document.querySelectorAll(".magnetic").forEach((button) => {
+    let x = 0, y = 0, tx = 0, ty = 0, raf = null;
+    const render = () => {
+      x += (tx-x) * .18;
+      y += (ty-y) * .18;
+      button.style.translate = `${x}px ${y}px`;
+      if (Math.abs(tx-x) > .03 || Math.abs(ty-y) > .03) raf = requestAnimationFrame(render);
+      else raf = null;
+    };
+    button.addEventListener("pointermove", (event) => {
+      const rect = button.getBoundingClientRect();
+      tx = ((event.clientX - rect.left) / rect.width - .5) * 6;
+      ty = ((event.clientY - rect.top) / rect.height - .5) * 5;
+      if (!raf) raf = requestAnimationFrame(render);
+    }, { passive:true });
+    button.addEventListener("pointerleave", () => {
+      tx = 0; ty = 0;
+      if (!raf) raf = requestAnimationFrame(render);
+    });
+  });
+}
+
+function initMicroTilt() {
+  if (!window.matchMedia("(pointer:fine)").matches || window.innerWidth < 992) return;
+  if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+
+  document.querySelectorAll("[data-tilt]").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      card.style.transform = `perspective(1000px) rotateX(${(-y*1.1).toFixed(2)}deg) rotateY(${(x*1.1).toFixed(2)}deg)`;
+    }, { passive:true });
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "";
+    });
   });
 }
 
 function initCurrentYear() {
-  const yearElement = document.getElementById("current-year");
-  if (yearElement) yearElement.textContent = new Date().getFullYear();
+  const year = document.getElementById("current-year");
+  if (year) year.textContent = new Date().getFullYear();
 }

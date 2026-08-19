@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#FFFDF9">
+  <meta name="description" content="AURELLE STUDIO — premium fashion e-commerce dengan koleksi wanita modern, elegan, dan nyaman untuk setiap momen.">
+  <meta property="og:title" content="AURELLE STUDIO | Elegant Style For Every Moment">
+  <meta property="og:description" content="Temukan koleksi fashion premium dengan desain modern, bahan nyaman, dan tampilan elegan.">
+  <meta property="og:image" content="assets/images/banners/hero-campaign.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AURELLE STUDIO">
+  <meta name="twitter:description" content="Premium modern fashion label untuk wanita dan lifestyle clothing.">
+  <meta name="twitter:image" content="assets/images/banners/hero-campaign.webp">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/monogram.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <title>AURELLE STUDIO | Elegant Style For Every Moment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Lewati ke konten</a>
+
+  <div class="announcement-bar" id="announcement-bar" aria-live="polite">
+    <div class="container">
+      <p class="announcement-text">Gratis Ongkir Seluruh Indonesia Untuk Pembelian Tertentu</p>
+    </div>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand" aria-label="AURELLE STUDIO">
+        <img src="assets/images/logo/monogram.svg" alt="" aria-hidden="true">
+        <span>
+          <strong>AURELLE STUDIO</strong>
+          <small>Elegant Style For Every Moment</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigasi utama">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#collection" class="nav-link">Collection</a>
+        <a href="#new-arrival" class="nav-link">New Arrival</a>
+        <a href="#best-seller" class="nav-link">Best Seller</a>
+        <a href="#promo" class="nav-link">Promo</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="search-toggle" type="button" aria-label="Buka pencarian">
+          <img src="assets/icons/search.svg" alt="" aria-hidden="true">
+        </button>
+        <button class="icon-btn" id="wishlist-toggle" type="button" aria-label="Buka wishlist">
+          <img src="assets/icons/wishlist.svg" alt="" aria-hidden="true">
+          <span class="count-badge" id="wishlist-count">0</span>
+        </button>
+        <button class="icon-btn" id="account-toggle" type="button" aria-label="Buka akun">
+          <img src="assets/icons/user.svg" alt="" aria-hidden="true">
+        </button>
+        <button class="icon-btn cart-btn" id="cart-toggle" type="button" aria-label="Buka keranjang">
+          <img src="assets/icons/cart.svg" alt="" aria-hidden="true">
+          <span class="count-badge" id="cart-count">0</span>
+        </button>
+        <button class="mobile-toggle" id="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Buka menu">
+          <img src="assets/icons/menu.svg" alt="" aria-hidden="true">
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav class="mobile-nav" aria-label="Menu seluler">
+        <div class="mobile-utilities">
+          <button type="button" class="mobile-utility-btn" data-mobile-panel="search-panel">
+            <img src="assets/icons/search.svg" alt="" aria-hidden="true">
+            <span>Cari Produk</span>
+          </button>
+          <button type="button" class="mobile-utility-btn" data-mobile-panel="account-panel">
+            <img src="assets/icons/user.svg" alt="" aria-hidden="true">
+            <span>Akun Saya</span>
+          </button>
+        </div>
+        <a href="#home" class="mobile-link">Home</a>
+        <a href="#collection" class="mobile-link">Collection</a>
+        <a href="#new-arrival" class="mobile-link">New Arrival</a>
+        <a href="#best-seller" class="mobile-link">Best Seller</a>
+        <a href="#promo" class="mobile-link">Promo</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <aside class="search-panel panel" id="search-panel" hidden aria-labelledby="search-title">
+    <div class="panel-header">
+      <h2 id="search-title">Cari Produk</h2>
+      <button class="panel-close" data-close="search-panel" aria-label="Tutup pencarian">
+        <img src="assets/icons/close.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+    <div class="search-body">
+      <div class="search-field">
+        <img src="assets/icons/search.svg" alt="" aria-hidden="true">
+        <input type="search" id="search-input" placeholder="Cari nama produk, kategori, atau koleksi...">
+      </div>
+      <div class="popular-searches">
+        <span>Pencarian populer:</span>
+        <button class="chip" data-search="Dress">Dress</button>
+        <button class="chip" data-search="Blouse">Blouse</button>
+        <button class="chip" data-search="Set Outfit">Set Outfit</button>
+        <button class="chip" data-search="Best Seller">Best Seller</button>
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </aside>
+
+  <aside class="wishlist-panel panel" id="wishlist-panel" hidden aria-labelledby="wishlist-title">
+    <div class="panel-header">
+      <h2 id="wishlist-title">Wishlist</h2>
+      <button class="panel-close" data-close="wishlist-panel" aria-label="Tutup wishlist">
+        <img src="assets/icons/close.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+    <div class="panel-body" id="wishlist-items"></div>
+  </aside>
+
+  <aside class="account-panel panel" id="account-panel" hidden aria-labelledby="account-title">
+    <div class="panel-header">
+      <h2 id="account-title">Akun Saya</h2>
+      <button class="panel-close" data-close="account-panel" aria-label="Tutup akun">
+        <img src="assets/icons/close.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+    <div class="panel-body" id="account-content"></div>
+  </aside>
+
+  <aside class="cart-panel panel" id="cart-panel" hidden aria-labelledby="cart-title">
+    <div class="panel-header">
+      <h2 id="cart-title">Keranjang Belanja</h2>
+      <button class="panel-close" data-close="cart-panel" aria-label="Tutup keranjang">
+        <img src="assets/icons/close.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+    <div class="panel-body" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-summary">
+        <span>Subtotal</span>
+        <strong id="cart-subtotal">Rp0</strong>
+      </div>
+      <button class="btn btn-primary btn-block" id="checkout-btn">
+        <img src="assets/icons/checkout.svg" alt="" aria-hidden="true">
+        Checkout
+      </button>
+    </div>
+  </aside>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+
+  <main id="main-content">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow hero-step">Premium Modern Fashion Label</p>
+          <h1 class="hero-title hero-step">Elegansi Modern Untuk Setiap Momen</h1>
+          <p class="hero-desc hero-step">Temukan koleksi fashion premium dengan desain modern, bahan nyaman, dan detail yang membuat setiap penampilan lebih percaya diri.</p>
+          <div class="hero-actions hero-step">
+            <a href="#new-arrival" class="btn btn-primary">Belanja Sekarang</a>
+            <a href="#collection" class="btn btn-secondary">Lihat Koleksi</a>
+          </div>
+          <div class="hero-highlights hero-step">
+            <div><strong>8+</strong><span>Koleksi Eksklusif</span></div>
+            <div><strong>Premium</strong><span>Bahan Nyaman</span></div>
+            <div><strong>Ready</strong><span>Shopping Experience</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual hero-step">
+          <figure class="hero-image-card spotlight">
+            <img src="assets/images/banners/hero-campaign.webp" alt="Model AURELLE STUDIO mengenakan koleksi fashion premium" loading="eager">
+          </figure>
+          <div class="floating-card fc-top">
+            <span class="tag">NEW COLLECTION</span>
+            <strong>Elegant Style For Every Moment</strong>
+          </div>
+          <div class="floating-card fc-bottom">
+            <img src="assets/icons/shipping.svg" alt="" aria-hidden="true">
+            <div>
+              <strong>Gratis Ongkir</strong>
+              <span>Untuk pembelian tertentu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="collection">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Explore Our Collection</p>
+          <h2>Koleksi Fashion Premium Untuk Gaya Modern</h2>
+          <p>Pilih kategori favorit Anda dengan tampilan elegan dan kurasi produk yang dirancang untuk keseharian hingga momen spesial.</p>
+        </div>
+
+        <div class="category-grid" id="category-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="new-arrival">
+      <div class="container">
+        <div class="section-head split reveal">
+          <div>
+            <p class="eyebrow">New Arrival</p>
+            <h2>Produk Pilihan Terbaru</h2>
+            <p>Siluet feminin, warna hangat, dan desain yang mudah dipadukan untuk berbagai kesempatan.</p>
+          </div>
+          <div class="toolbar">
+            <button class="filter-toggle btn btn-secondary" type="button" id="filter-toggle">
+              <img src="assets/icons/filter.svg" alt="" aria-hidden="true">
+              Filter & Sort
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-panel reveal" id="filter-panel">
+          <div class="filter-grid">
+            <label>
+              <span>Kategori</span>
+              <select id="category-filter">
+                <option value="all">Semua Koleksi</option>
+                <optgroup label="Koleksi Utama">
+                  <option value="Dress Collection">Dress Collection</option>
+                  <option value="Tops Collection">Tops Collection</option>
+                  <option value="Bottom Collection">Bottom Collection</option>
+                  <option value="Outer Collection">Outer Collection</option>
+                  <option value="Complete Outfit">Complete Outfit</option>
+                </optgroup>
+                <optgroup label="Kategori Produk">
+                  <option value="Dress">Dress</option>
+                  <option value="Blouse">Blouse</option>
+                  <option value="Shirt">Shirt</option>
+                  <option value="Basic Wear">Basic Top</option>
+                  <option value="Pants">Pants</option>
+                  <option value="Skirt">Skirt</option>
+                  <option value="Outerwear">Outerwear</option>
+                  <option value="Set Outfit">Matching Set</option>
+                </optgroup>
+              </select>
+            </label>
+
+            <label>
+              <span>Harga</span>
+              <select id="price-filter">
+                <option value="all">Semua Harga</option>
+                <option value="under300">Di bawah Rp300.000</option>
+                <option value="300to400">Rp300.000 - Rp400.000</option>
+                <option value="above400">Di atas Rp400.000</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Ukuran</span>
+              <select id="size-filter">
+                <option value="all">Semua Ukuran</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Warna</span>
+              <select id="color-filter">
+                <option value="all">Semua Warna</option>
+                <option value="Champagne">Champagne</option>
+                <option value="Ivory">Ivory</option>
+                <option value="Beige">Beige</option>
+                <option value="Soft Rose">Soft Rose</option>
+                <option value="Cream">Cream</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Urutkan</span>
+              <select id="sort-filter">
+                <option value="latest">Latest</option>
+                <option value="cheap">Cheapest</option>
+                <option value="expensive">Most expensive</option>
+                <option value="popular">Popular</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <p>Tidak ada produk yang cocok dengan filter Anda.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section best-seller-section" id="best-seller">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">Best Seller</p>
+          <h2>Koleksi Favorit Pelanggan</h2>
+          <p>Produk dengan kombinasi kenyamanan, kualitas, dan tampilan yang paling banyak disukai.</p>
+        </div>
+        <div class="best-grid" id="best-grid"></div>
+      </div>
+    </section>
+
+    <section class="section brand-story" id="about">
+      <div class="container story-grid">
+        <div class="story-image reveal-left">
+          <img src="assets/images/banners/brand-story.webp" alt="Editorial campaign AURELLE STUDIO" loading="lazy">
+        </div>
+        <div class="story-copy reveal">
+          <p class="eyebrow">About AURELLE STUDIO</p>
+          <h2>Fashion Modern Dengan Sentuhan Elegan dan Nyaman</h2>
+          <p>AURELLE STUDIO menghadirkan fashion modern dengan perpaduan desain elegan, kenyamanan, dan kualitas yang dirancang untuk gaya hidup masa kini.</p>
+          <p>Setiap koleksi dipilih untuk menampilkan kesan feminin, minimal, dan premium. Mulai dari potongan basic hingga outfit statement, semuanya dirancang agar mudah dipakai dan tetap terlihat istimewa.</p>
+          <div class="story-points">
+            <div><img src="assets/icons/shipping.svg" alt="" aria-hidden="true"><span>Pengalaman belanja yang nyaman</span></div>
+            <div><img src="assets/icons/payment.svg" alt="" aria-hidden="true"><span>Pembayaran aman dan sederhana</span></div>
+            <div><img src="assets/icons/return.svg" alt="" aria-hidden="true"><span>Kemudahan penukaran ukuran</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section promo-section" id="promo">
+      <div class="container">
+        <div class="promo-banner reveal-scale">
+          <img src="assets/images/banners/promo-sale.webp" alt="Special Collection Sale" loading="lazy">
+          <div class="promo-overlay">
+            <p class="eyebrow">Special Collection Sale</p>
+            <h2>Upgrade Your Everyday Style</h2>
+            <p>Nikmati penawaran spesial untuk koleksi pilihan dengan detail premium dan nuansa elegan.</p>
+            <a href="#new-arrival" class="btn btn-primary">Shop The Sale</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section trust-section section-soft">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">Why Choose Us</p>
+          <h2>Belanja Lebih Nyaman Bersama AURELLE STUDIO</h2>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-card reveal">
+            <img src="assets/icons/collection.svg" alt="" aria-hidden="true">
+            <h3>Premium Material</h3>
+            <p>Material nyaman dengan kualitas terbaik dan sentuhan yang terasa istimewa.</p>
+          </article>
+          <article class="trust-card reveal">
+            <img src="assets/icons/shipping.svg" alt="" aria-hidden="true">
+            <h3>Fast Delivery</h3>
+            <p>Pengiriman cepat dan aman untuk berbagai kota di Indonesia.</p>
+          </article>
+          <article class="trust-card reveal">
+            <img src="assets/icons/return.svg" alt="" aria-hidden="true">
+            <h3>Easy Return</h3>
+            <p>Kemudahan proses penukaran ukuran agar belanja terasa lebih tenang.</p>
+          </article>
+          <article class="trust-card reveal">
+            <img src="assets/icons/payment.svg" alt="" aria-hidden="true">
+            <h3>Secure Payment</h3>
+            <p>Pembayaran aman dengan alur checkout yang sederhana dan jelas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonial-section">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">Customer Reviews</p>
+          <h2>Apa Kata Pelanggan Kami</h2>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card reveal">
+            <div class="testimonial-head">
+              <div class="avatar">NA</div>
+              <div>
+                <strong>Nadia</strong>
+                <span>@nadiasetya</span>
+              </div>
+            </div>
+            <div class="stars" aria-label="5 dari 5 bintang">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+            </div>
+            <p>"Suka banget dengan kualitas bahannya. Modelnya simple tapi terlihat mahal dan nyaman dipakai seharian."</p>
+          </article>
+          <article class="testimonial-card reveal">
+            <div class="testimonial-head">
+              <div class="avatar">AL</div>
+              <div>
+                <strong>Alya</strong>
+                <span>@alyareads</span>
+              </div>
+            </div>
+            <div class="stars" aria-label="5 dari 5 bintang">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+            </div>
+            <p>"Packaging rapi, pengiriman cepat, dan koleksinya benar-benar cocok untuk tampilan formal maupun casual premium."</p>
+          </article>
+          <article class="testimonial-card reveal">
+            <div class="testimonial-head">
+              <div class="avatar">SA</div>
+              <div>
+                <strong>Salsa</strong>
+                <span>@salsafashion</span>
+              </div>
+            </div>
+            <div class="stars" aria-label="5 dari 5 bintang">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+              <img src="assets/icons/star.svg" alt="" aria-hidden="true">
+            </div>
+            <p>"Websitenya enak dipakai, mudah pilih produk, dan foto produknya membantu banget saat memutuskan belanja."</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lookbook-section section-soft">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">Lookbook</p>
+          <h2>Editorial Moments</h2>
+          <p>Inspirasi gaya dalam grid visual yang menampilkan nuansa feminin, minimal, dan premium.</p>
+        </div>
+        <div class="lookbook-grid reveal">
+          <figure class="lookbook-item tall"><img src="assets/images/lifestyle/lookbook-editorial.webp" alt="Lookbook editorial AURELLE STUDIO" loading="lazy"></figure>
+          <figure class="lookbook-item"><img src="assets/images/products/celeste-satin-dress.webp" alt="Celeste Satin Dress" loading="lazy"></figure>
+          <figure class="lookbook-item"><img src="assets/images/products/nara-premium-set.webp" alt="Nara Premium Set" loading="lazy"></figure>
+          <figure class="lookbook-item wide"><img src="assets/images/banners/hero-campaign.webp" alt="Campaign hero AURELLE STUDIO" loading="lazy"></figure>
+          <figure class="lookbook-item"><img src="assets/images/products/amara-pleated-skirt.webp" alt="Amara Pleated Skirt" loading="lazy"></figure>
+          <figure class="lookbook-item"><img src="assets/images/products/elora-knit-cardigan.webp" alt="Elora Knit Cardigan" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section newsletter-section">
+      <div class="container">
+        <div class="newsletter-card reveal-scale">
+          <div>
+            <p class="eyebrow">Newsletter</p>
+            <h2>Dapatkan Update Koleksi Terbaru</h2>
+            <p>Berlangganan untuk mendapatkan informasi produk baru, promo, dan inspirasi gaya dari AURELLE STUDIO.</p>
+          </div>
+          <form class="newsletter-form" id="newsletter-form">
+            <label class="sr-only" for="newsletter-email">Email</label>
+            <input id="newsletter-email" type="email" placeholder="Masukkan email Anda" required>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+          <p class="newsletter-message" id="newsletter-message" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section section-soft">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Pertanyaan yang Sering Diajukan</h2>
+        </div>
+        <div class="faq-list" id="faq-list">
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button">Bagaimana cara membeli?<span>+</span></button>
+            <div class="faq-answer"><p>Pilih produk yang Anda sukai, tentukan ukuran dan jumlah, lalu tambahkan ke keranjang untuk melanjutkan ke checkout.</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button">Berapa lama pengiriman?<span>+</span></button>
+            <div class="faq-answer"><p>Waktu pengiriman menyesuaikan kota tujuan. Rata-rata 2–5 hari kerja setelah pembayaran terverifikasi.</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button">Apakah bisa tukar ukuran?<span>+</span></button>
+            <div class="faq-answer"><p>Ya, penukaran ukuran tersedia selama stok masih ada dan produk belum digunakan sesuai syarat penukaran.</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button">Metode pembayaran apa saja?<span>+</span></button>
+            <div class="faq-answer"><p>Kami mendukung transfer bank, virtual account, dan metode pembayaran digital yang aman.</p></div>
+          </article>
+          <article class="faq-item reveal">
+            <button class="faq-question" type="button">Apakah produk ready stock?<span>+</span></button>
+            <div class="faq-answer"><p>Sebagian besar produk ready stock. Status ketersediaan dapat dilihat langsung pada detail produk.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="brand footer-brand-link">
+          <img src="assets/images/logo/monogram.svg" alt="" aria-hidden="true">
+          <span>
+            <strong>AURELLE STUDIO</strong>
+            <small>Elegansi Modern Untuk Setiap Momen</small>
+          </span>
+        </a>
+        <p>Brand fashion modern dengan kualitas premium, pengalaman belanja nyaman, dan tampilan elegan.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><img src="assets/icons/instagram.svg" alt="" aria-hidden="true"></a>
+          <a href="#" aria-label="Facebook"><img src="assets/icons/facebook.svg" alt="" aria-hidden="true"></a>
+          <a href="#" aria-label="TikTok"><img src="assets/icons/tiktok.svg" alt="" aria-hidden="true"></a>
+        </div>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="#collection">Collection</a>
+        <a href="#new-arrival">New Arrival</a>
+        <a href="#best-seller">Best Seller</a>
+      </div>
+      <div>
+        <h3>Help</h3>
+        <a href="#faq-list">FAQ</a>
+        <a href="#promo">Shipping</a>
+        <a href="#promo">Return</a>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <a href="mailto:hello@aurellestudio.com"><img src="assets/icons/email.svg" alt="" aria-hidden="true"> hello@aurellestudio.com</a>
+        <a href="tel:+6281234567890"><img src="assets/icons/phone.svg" alt="" aria-hidden="true"> +62 812-3456-7890</a>
+        <a href="#"><img src="assets/icons/location.svg" alt="" aria-hidden="true"> Jakarta, Indonesia</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="current-year"></span> AURELLE STUDIO. All rights reserved.</p>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div class="quick-view-modal" id="quick-view-modal" hidden aria-labelledby="quick-view-title">
+    <div class="quick-view-dialog">
+      <button class="panel-close modal-close" data-close="quick-view-modal" aria-label="Tutup quick view">
+        <img src="assets/icons/close.svg" alt="" aria-hidden="true">
+      </button>
+      <div class="quick-view-content" id="quick-view-content"></div>
+    </div>
+  </div>
+
+  <div class="checkout-modal" id="checkout-modal" hidden aria-labelledby="checkout-title">
+    <div class="checkout-dialog">
+      <button class="panel-close modal-close" data-close="checkout-modal" aria-label="Tutup checkout">
+        <img src="assets/icons/close.svg" alt="" aria-hidden="true">
+      </button>
+      <div class="checkout-shell">
+        <div class="checkout-heading">
+          <p class="eyebrow">Secure Checkout</p>
+          <h2 id="checkout-title">Selesaikan Pesanan</h2>
+          <p>Checkout demo untuk website statis. Tidak ada data pembayaran yang dikirim ke server.</p>
+        </div>
+        <div class="checkout-progress" id="checkout-progress">
+          <span class="active" data-step-indicator="1">1. Pengiriman</span>
+          <span data-step-indicator="2">2. Pembayaran</span>
+          <span data-step-indicator="3">3. Review</span>
+        </div>
+        <div id="checkout-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

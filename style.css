@@ -61,6 +61,17 @@ body.has-scrolled .scroll-progress span{opacity:1}
   background:linear-gradient(135deg,var(--indigo-soft),var(--blue-soft));border:1px solid var(--border-strong);
   color:var(--indigo);font-size:12px;letter-spacing:.04em
 }
+.brand-profile{
+  width:36px;
+  height:36px;
+  flex:0 0 36px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:11px;
+  border:1px solid var(--border-strong);
+  background:var(--surface);
+  box-shadow:0 6px 18px rgba(24,29,40,.06);
+}
 .brand-name{font-size:14px;letter-spacing:-.02em}
 .desktop-nav{margin-left:auto;display:flex;align-items:center;gap:2px}
 .nav-link{

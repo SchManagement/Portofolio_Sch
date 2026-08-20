@@ -378,3 +378,24 @@ document.querySelectorAll("[data-magnetic]").forEach(button=>{
     });
 });
 
+
+
+// SCH FINAL AGENCY MOTION
+const revealObserver=new IntersectionObserver(items=>{
+ items.forEach(i=>{
+  if(i.isIntersecting)i.target.classList.add("show");
+ });
+},{threshold:.15});
+document.querySelectorAll(".sch-reveal").forEach(e=>revealObserver.observe(e));
+
+const cursor=document.createElement("div");
+cursor.className="sch-cursor";
+document.body.appendChild(cursor);
+window.addEventListener("mousemove",e=>{
+ cursor.style.left=e.clientX-14+"px";
+ cursor.style.top=e.clientY-14+"px";
+});
+document.querySelectorAll("a,button,.sch-case").forEach(e=>{
+ e.addEventListener("mouseenter",()=>cursor.style.transform="scale(2)");
+ e.addEventListener("mouseleave",()=>cursor.style.transform="scale(1)");
+});

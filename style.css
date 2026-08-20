@@ -825,3 +825,304 @@ body.hero-ready .float-a{animation-delay:.86s}body.hero-ready .float-b{animation
   .elanora-preview-copy{width:86%}
   .elanora-preview-copy h4{font-size:20px}
 }
+
+
+/* ===== HILMAN DIGITAL STUDIO V2 PREMIUM MOTION SYSTEM ===== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(199,164,106,.10), transparent 25%),
+        radial-gradient(circle at 85% 70%, rgba(199,164,106,.08), transparent 30%),
+        #0B0C0B;
+}
+
+/* Cinematic page entrance */
+body::before {
+    content:"";
+    position:fixed;
+    inset:0;
+    background:#0B0C0B;
+    z-index:9999;
+    animation:pageReveal 1.2s cubic-bezier(.77,0,.18,1) forwards;
+    pointer-events:none;
+}
+
+@keyframes pageReveal {
+    0% { transform:translateY(0); }
+    100% { transform:translateY(-100%); }
+}
+
+/* Ambient luxury light */
+.page-glow,
+body::after {
+    position:fixed;
+    content:"";
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(120px);
+    background:rgba(199,164,106,.12);
+    animation:ambientMove 12s infinite alternate ease-in-out;
+    pointer-events:none;
+    z-index:-1;
+}
+
+body::after {
+    right:-180px;
+    bottom:-180px;
+}
+
+@keyframes ambientMove {
+    from { transform:translate(0,0); }
+    to { transform:translate(-80px,50px); }
+}
+
+/* Premium cards */
+.project-card,
+.card,
+.case-study {
+    transform-style:preserve-3d;
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        box-shadow .45s ease,
+        border-color .45s ease;
+}
+
+.project-card:hover,
+.card:hover,
+.case-study:hover {
+    transform:translateY(-12px) rotateX(3deg) rotateY(-3deg);
+    border-color:rgba(199,164,106,.65);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.45),
+        0 0 40px rgba(199,164,106,.12);
+}
+
+/* Spotlight effect */
+[data-spotlight] {
+    position:relative;
+    overflow:hidden;
+}
+
+[data-spotlight]::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(
+        300px circle at var(--mouse-x,50%) var(--mouse-y,50%),
+        rgba(199,164,106,.18),
+        transparent 45%
+      );
+    opacity:0;
+    transition:.3s;
+    pointer-events:none;
+    z-index:2;
+}
+
+[data-spotlight]:hover::before {
+    opacity:1;
+}
+
+/* Reveal animation */
+.reveal,
+.reveal-standard,
+.reveal-card {
+    opacity:0;
+    transform:translateY(60px);
+    filter:blur(12px);
+    transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.8,.2,1),
+        filter .9s ease;
+}
+
+.reveal.active,
+.reveal-standard.active,
+.reveal-card.active {
+    opacity:1;
+    transform:none;
+    filter:blur(0);
+}
+
+/* Gold animated buttons */
+.btn {
+    position:relative;
+    overflow:hidden;
+    transition:.35s ease;
+}
+
+.btn::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);
+    transform:translateX(-120%);
+    transition:.6s;
+}
+
+.btn:hover::before {
+    transform:translateX(120%);
+}
+
+/* Floating mockups */
+.floating,
+.project-preview,
+.mockup {
+    animation:floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-18px); }
+}
+
+/* Navigation glass */
+header,
+nav {
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
+
+/* Mobile smooth */
+@media(max-width:700px){
+    .project-card:hover,
+    .card:hover,
+    .case-study:hover {
+        transform:translateY(-5px);
+    }
+}
+
+
+/* ===== SCH DIGITAL STUDIO V3 BRAND SYSTEM ===== */
+
+.luxury-loader{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:grid;
+    place-items:center;
+    background:#0B0C0B;
+    animation:schLoader 1.8s ease forwards;
+}
+
+.luxury-loader img{
+    width:min(320px,70vw);
+    opacity:0;
+    animation:schLogoReveal 1.2s ease forwards;
+}
+
+@keyframes schLogoReveal{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@keyframes schLoader{
+    0%,70%{opacity:1;visibility:visible}
+    100%{opacity:0;visibility:hidden}
+}
+
+.sch-brand{
+    display:flex;
+    align-items:center;
+}
+
+.sch-brand img{
+    width:150px;
+    height:auto;
+}
+
+.sch-gold{
+    color:#C7A46A;
+}
+
+/* Premium cursor support */
+.sch-cursor{
+    position:fixed;
+    width:24px;
+    height:24px;
+    border:1px solid #C7A46A;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:99999;
+    transition:.15s ease;
+    mix-blend-mode:screen;
+}
+
+
+/* ===== SCH DIGITAL STUDIO FINAL PREMIUM POLISH ===== */
+
+::selection{
+    background:#C7A46A;
+    color:#0B0C0B;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+a{
+    text-decoration:none;
+}
+
+.premium-hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.premium-hero h1{
+    font-size:clamp(3rem,8vw,7rem);
+    letter-spacing:-.06em;
+    line-height:.95;
+}
+
+.gold-line{
+    width:120px;
+    height:1px;
+    background:linear-gradient(90deg,#C7A46A,transparent);
+    animation:lineMove 3s infinite;
+}
+
+@keyframes lineMove{
+    0%,100%{width:60px;opacity:.5}
+    50%{width:180px;opacity:1}
+}
+
+.case-study-image{
+    overflow:hidden;
+    border-radius:28px;
+}
+
+.case-study-image img{
+    width:100%;
+    transition:transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+.case-study-image:hover img{
+    transform:scale(1.08);
+}
+
+.glass-panel{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(199,164,106,.2);
+    backdrop-filter:blur(20px);
+}
+
+footer{
+    border-top:1px solid rgba(199,164,106,.15);
+    padding:50px 0;
+}

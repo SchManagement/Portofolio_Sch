@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 120" fill="none">
-  <rect width="480" height="120" rx="24" fill="#FFFDF9"/>
-  <g fill="#A97855">
-    <path d="M42 82 68 26h15l26 56H96l-6-13H61L55 82H42Zm24-24h19l-9.5-22L66 58Z"/>
-    <path d="M117 82V26h14v45h28v11h-42Z"/>
-  </g>
-  <text x="182" y="52" font-family="Georgia, 'Times New Roman', serif" font-size="34" letter-spacing="4" fill="#292929">AURELLE</text>
-  <text x="183" y="86" font-family="Inter, Arial, sans-serif" font-size="13" letter-spacing="7" fill="#A97855">STUDIO</text>
-</svg>

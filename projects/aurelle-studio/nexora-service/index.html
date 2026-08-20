@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#F7FBF8">
+  <title>NEXORA SERVICE — AC Service Management System</title>
+  <meta name="description" content="Premium AC service management portfolio application.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loginView" class="login-view">
+    <section class="login-visual" id="loginVisual">
+      <div class="moving-grid"></div>
+      <div class="glow glow-a"></div>
+      <div class="glow glow-b"></div>
+
+      <div class="login-brand">
+        <div class="brand-logo">N</div>
+        <div>
+          <strong>NEXORA SERVICE</strong>
+          <span>AC Service Management System</span>
+        </div>
+      </div>
+
+      <div class="route-scene" aria-hidden="true">
+        <svg viewBox="0 0 800 520">
+          <path class="route-path" d="M80 390 C170 270 250 340 330 240 S520 140 710 210"/>
+          <circle cx="80" cy="390" r="5"/>
+          <circle cx="330" cy="240" r="5"/>
+          <circle cx="710" cy="210" r="5"/>
+        </svg>
+        <span class="route-pin pin-a"><img src="assets/icons/location.svg" alt=""></span>
+        <span class="route-pin pin-b"><img src="assets/icons/map-pin.svg" alt=""></span>
+      </div>
+
+      <div class="preview-window" id="previewWindow">
+        <div class="preview-sidebar">
+          <div class="preview-logo"></div>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="preview-main">
+          <div class="preview-top"><i></i><b></b></div>
+          <div class="preview-greeting">
+            <div><small>Dashboard Operasional</small><strong>Selamat Datang</strong><span>20 Agustus 2026</span></div>
+            <div class="preview-ac"><img src="assets/icons/air-conditioner.svg" alt=""></div>
+          </div>
+          <div class="preview-kpis">
+            <div><span>Pelanggan</span><strong>248</strong></div>
+            <div><span>Jobs</span><strong>12</strong></div>
+            <div><span>Teknisi</span><strong>8</strong></div>
+          </div>
+          <div class="preview-bottom">
+            <div class="preview-chart">
+              <span>Pendapatan Service</span>
+              <svg viewBox="0 0 260 90"><path d="M4 74 C35 72 40 48 70 52 S118 64 139 37 S184 48 256 12"/></svg>
+            </div>
+            <div class="preview-status">
+              <span>Status Teknisi</span>
+              <p><i></i>Rizky — Dikerjakan</p>
+              <p><i></i>Dimas — Berangkat</p>
+              <p><i></i>Andi — Tiba</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="floating-card fc-1"><img src="assets/icons/technician.svg" alt=""><span><small>Teknisi Aktif</small><strong>8</strong></span></div>
+      <div class="floating-card fc-2"><img src="assets/icons/calendar.svg" alt=""><span><small>Jadwal Hari Ini</small><strong>12</strong></span></div>
+      <div class="floating-card fc-3"><img src="assets/icons/send.svg" alt=""><span><small>Invoice Terkirim</small><strong>78</strong></span></div>
+      <div class="floating-card fc-4"><img src="assets/icons/check.svg" alt=""><span><small>Pekerjaan Selesai</small><strong>73</strong></span></div>
+    </section>
+
+    <section class="login-form-side">
+      <form id="loginForm" class="login-card">
+        <div class="mobile-login-brand">
+          <div class="brand-logo">N</div>
+          <div><strong>NEXORA SERVICE</strong><span>AC Service Management System</span></div>
+        </div>
+        <div class="eyebrow">BUSINESS OPERATIONS</div>
+        <h1>Selamat Datang Kembali</h1>
+        <p>Masuk untuk mengelola pelanggan, teknisi, jadwal pekerjaan, invoice, monitoring, dan aktivitas operasional dalam satu sistem.</p>
+
+        <label class="field">
+          <span>Email / Username</span>
+          <div class="input-shell">
+            <img src="assets/icons/user.svg" alt="">
+            <input id="loginUser" autocomplete="username" placeholder="administrator" required>
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <div class="input-shell">
+            <img src="assets/icons/lock.svg" alt="">
+            <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Masukkan password" required>
+            <button type="button" class="icon-btn ghost" id="togglePassword" aria-label="Tampilkan password">
+              <img src="assets/icons/eye.svg" alt="">
+            </button>
+          </div>
+        </label>
+
+        <label class="remember-row">
+          <input id="rememberMe" type="checkbox">
+          <span>Ingat Saya</span>
+        </label>
+
+        <button class="btn primary login-submit" type="submit">
+          <span>Masuk ke Dashboard</span>
+          <img src="assets/icons/chevron-right.svg" alt="">
+        </button>
+        <small class="demo-login-note">Portfolio demo — masukkan username/email dan password apa pun yang tidak kosong.</small>
+      </form>
+    </section>
+  </div>
+
+  <div id="appView" class="app-view hidden">
+    <div id="drawerBackdrop" class="drawer-backdrop"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo">N</div>
+        <div><strong>NEXORA SERVICE</strong><span>AC Service Management</span></div>
+      </div>
+
+      <nav id="sidebarNav">
+        <div class="nav-group"><span>UTAMA</span>
+          <button class="nav-item active" data-page="dashboard"><img src="assets/icons/dashboard.svg" alt=""><b>Dashboard</b></button>
+        </div>
+        <div class="nav-group"><span>TRANSAKSI</span>
+          <button class="nav-item" data-page="nota"><img src="assets/icons/invoice-add.svg" alt=""><b>Buat Nota</b></button>
+          <button class="nav-item" data-page="history"><img src="assets/icons/invoice-history.svg" alt=""><b>Riwayat Nota</b></button>
+        </div>
+        <div class="nav-group"><span>OPERASIONAL</span>
+          <button class="nav-item" data-page="schedule"><img src="assets/icons/calendar.svg" alt=""><b>Jadwal Pekerjaan</b></button>
+          <button class="nav-item" data-page="customers"><img src="assets/icons/customer.svg" alt=""><b>Pelanggan</b></button>
+          <button class="nav-item" data-page="technicians"><img src="assets/icons/technician.svg" alt=""><b>Teknisi</b></button>
+        </div>
+        <div class="nav-group"><span>MONITORING</span>
+          <button class="nav-item" data-page="monitoring"><img src="assets/icons/monitoring.svg" alt=""><b>Monitoring Teknisi</b></button>
+          <button class="nav-item" data-page="activity"><img src="assets/icons/activity.svg" alt=""><b>Aktivitas Teknisi</b></button>
+        </div>
+        <div class="nav-group"><span>SISTEM</span>
+          <button class="nav-item" data-page="backup"><img src="assets/icons/backup.svg" alt=""><b>Backup</b></button>
+          <button class="nav-item" data-page="settings"><img src="assets/icons/settings.svg" alt=""><b>Pengaturan</b></button>
+        </div>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="profile-mini">
+          <div class="avatar">AD</div>
+          <div><strong>Administrator</strong><span>Super Admin</span></div>
+        </div>
+        <button class="nav-item logout" id="logoutBtn"><img src="assets/icons/logout.svg" alt=""><b>Keluar</b></button>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn mobile-only" id="menuBtn" aria-label="Buka menu"><img src="assets/icons/menu.svg" alt=""></button>
+          <div><h2 id="pageTitle">Dashboard</h2><p id="pageSubtitle">Ringkasan operasional service hari ini</p></div>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="search-trigger" id="searchTrigger"><img src="assets/icons/search.svg" alt=""><span>Cari pelanggan, invoice, pekerjaan...</span><kbd>⌘ K</kbd></button>
+          <button class="icon-btn" aria-label="Notifikasi"><img src="assets/icons/notification.svg" alt=""><i class="notify-dot"></i></button>
+          <div class="date-chip" id="todayChip"></div>
+          <button class="profile-trigger"><div class="avatar small">AD</div><span>Administrator</span><img src="assets/icons/chevron-down.svg" alt=""></button>
+        </div>
+      </header>
+
+      <section id="pageHost" class="page-host"></section>
+    </main>
+
+    <div id="toastHost" class="toast-host" aria-live="polite"></div>
+
+    <div class="modal" id="searchModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="searchModal"></div>
+      <div class="modal-dialog search-dialog" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
+        <div class="modal-head">
+          <div><h3 id="searchTitle">Pencarian Global</h3><p>Cari data di seluruh aplikasi.</p></div>
+          <button class="icon-btn" data-close="searchModal" aria-label="Tutup"><img src="assets/icons/close.svg" alt=""></button>
+        </div>
+        <div class="global-search-input"><img src="assets/icons/search.svg" alt=""><input id="globalSearchInput" placeholder="Ketik pelanggan, invoice, job, teknisi..."></div>
+        <div id="globalSearchResults" class="search-results"></div>
+      </div>
+    </div>
+
+    <div class="modal" id="confirmModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="confirmModal"></div>
+      <div class="modal-dialog confirm-dialog" role="dialog" aria-modal="true">
+        <div class="confirm-icon"><img src="assets/icons/warning.svg" alt=""></div>
+        <h3 id="confirmTitle">Konfirmasi</h3>
+        <p id="confirmText">Apakah Anda yakin?</p>
+        <div class="modal-actions">
+          <button class="btn secondary" data-close="confirmModal">Batal</button>
+          <button class="btn danger" id="confirmAction">Hapus</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
